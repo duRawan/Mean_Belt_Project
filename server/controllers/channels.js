@@ -7,6 +7,7 @@ module.exports = {
             .catch(err => res.json(err));
     },
     GetChannelById: function (req, res) {//Retrieve a Channel by ID
+        console.log("idddd",req.params.id);
         Channel.find({ _id: req.params.id })
             .then(data => res.json(data))
             .catch(err => res.json(err));

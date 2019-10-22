@@ -16,8 +16,10 @@ export class AppComponent implements OnInit {
   selectedChannel;
   flag: boolean;
   newChannel;
+  home: boolean;
+  regst: boolean;
 
-
+  login:boolean;
   constructor(private _httpService: HttpService) { }
   ngOnInit() {
     let observable = this._httpService.AllgetChannel();
@@ -26,6 +28,9 @@ export class AppComponent implements OnInit {
       this.channel = data;
     });
     this.flag = false;
+    this.login=false;
+    this.home = true;
+    this.regst = false;
   }
   getChannel(id: String) {
     console.log(id)
@@ -40,12 +45,20 @@ export class AppComponent implements OnInit {
     // console.log("-------------------",channel);
     // console.log(channel.messages); 
   }
-
+  setlogin(){
+    this.home = false;
+    this.regst = false;
+    this.login=true;
+  }
 
   setFlag() {
     this.flag = true;
   }
-
+  setsignUp(){
+    this.home = false;
+    this.login=false;
+    this.regst = true;
+  }
 
   onSubmit() {
     console.log("New Channel",this.newChannel);
@@ -57,5 +70,5 @@ export class AppComponent implements OnInit {
     })
     
   }
-
+  
 }

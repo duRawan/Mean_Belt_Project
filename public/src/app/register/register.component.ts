@@ -12,10 +12,19 @@ export class RegisterComponent implements OnInit {
   name :string;
   email :string;
   password :string;
+  signup : boolean;
+  login : boolean;
 
   constructor(public authService:AuthService, private router: Router) {  }
 
   ngOnInit() {
+    this.login = false;
+    this.signup = true;
+  }
+
+  setlogin(){
+    this.signup = false;
+    this.login = true;
   }
 
   register(){

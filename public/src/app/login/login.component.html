@@ -1,4 +1,4 @@
-<div class="container-fluid col-xs-6 col-xs-offset-3">
+<!-- <div class="container-fluid col-xs-6 col-xs-offset-3">
 
 
         <h2 class="text-center page-header">Welcome to our Chat</h2>
@@ -21,5 +21,88 @@
           <a href="/register">Register now</a>
         </div>
       
+      </div> -->
+
+<!DOCTYPE html>
+<div *ngIf="signin">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login2</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+    <!-- navgation bar  -->
+    <nav class="navbar fixed-top navbar-expand-lg fixed-top" style="background-color: white;">
+      <div class="container">
+        <a class="navbar-brand text-primary" href="index.html">Start Bootstrap</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="#">LogIn</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      
+    </nav>
+
+    <!-- main header -->
+    <div class="container-fluid">
+      <div class="row no-gutter">
+        <div class="d-none d-md-flex col-md-4 col-lg-5 bg-image"></div>
+        <div class="col-md-8 col-lg-6">
+          <div class="login d-flex align-items-center py-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-9 col-lg-8 mx-auto">
+                  <h3 class="login-heading mb-4">Welcome back!</h3>
+                  <form>
+                    <div class="form-label-group">
+                      <input type="email" id="inputEmail" [(ngModel)]="email" name = "email"class="form-control"
+                        placeholder="Email address" required autofocus>
+                      <label for="inputEmail">Email address</label>
+                    </div>
+
+                    <div class="form-label-group">
+                      <input type="password" id="inputPassword" name="password" [(ngModel)]="password" class="form-control"
+                        placeholder="Password" required>
+                      <label for="inputPassword">Password</label>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                      type="submit" (click)="login()">Sign in</button>
+                    <div class="text-center">
+                      <a class="small" href="#" (click)="setsignUp()">if you don't have account REGISTER HERE</a></div>
+                    <!-- Make it Button -->
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</div>
+
+<app-register *ngIf="signUp"></app-register>

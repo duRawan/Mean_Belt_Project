@@ -11,10 +11,17 @@ export class LoginComponent implements OnInit {
 
   email :string;
   password :string;
+  signin: boolean;
+  signUp: boolean;
 
-  constructor(public authService:AuthService, private router: Router) { }
+
+  constructor(public authService:AuthService, private router: Router) { 
+
+  }
 
   ngOnInit() {
+    this.signUp = false;
+    this.signin = true;
   }
 
   login(){
@@ -33,6 +40,11 @@ export class LoginComponent implements OnInit {
         
       }
     });
+  }
+
+  setsignUp(){
+    this.signin = false;
+    this.signUp = true;
   }
 
 }

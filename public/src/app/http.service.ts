@@ -19,4 +19,7 @@ export class HttpService {
   createChannel(newChannel) {
     return this._http.post('/channels', newChannel);
   }
+  getChannelsByUSerName(){
+    return this._http.get('/channels/username/Rawan');
+  }
 }

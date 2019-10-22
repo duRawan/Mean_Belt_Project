@@ -12,6 +12,10 @@ module.exports = function (app) {
     app.get('/channels/:id/', (req, res) => {
         channels.GetChannelById(req, res);
     });
+    //Retrieve channels by UserName
+    app.get('/channels/username/:UserName/', (req, res) => {
+        channels.GetAllChannelForUser(req, res);
+    });
     //Create a channel
     app.post('/channels', (req, res) => {
         channels.newChannel(req, res);

@@ -29,4 +29,10 @@ module.exports = {
             .then(console.log("Channel Deleted succesfully"))
             .catch(err => res.json(err));
     },
+    GetAllChannelForUser: function (req,res){//Find all channels for a user by UserName
+        console.log("User name -------",req.params.UserName)
+        Channel.find().or([{owner:req.params.UserName},{members:req.params.UserName}])
+        .then(data =>{console.log(" all Channels for user",data),res.json(data)})
+        .catch(err => res.json(err));
+    },
 }

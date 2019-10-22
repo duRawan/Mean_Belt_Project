@@ -12,7 +12,8 @@ export class AppComponent implements OnInit {
 
   socket = io.connect();
   title = 'public';
-  channel;
+  channel:any;
+  UserChannels:any;
   selectedChannel;
   flag: boolean;
   newChannel;
@@ -71,4 +72,15 @@ export class AppComponent implements OnInit {
     
   }
   
+
+getUserChannels(){
+  let observable = this._httpService.getChannelsByUSerName();
+  observable.subscribe(data => {//when the data is ready run this
+    console.log("Got User Channels!", data)
+    this.UserChannels = data;
+    console.log(this.UserChannels)
+    console.log("--------ang-----------", this.UserChannels[0]._id);
+  })
+}
+
 }

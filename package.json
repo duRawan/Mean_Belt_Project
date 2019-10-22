@@ -19,6 +19,12 @@
   },
   "homepage": "https://github.com/duRawan/Mean_Belt_Project#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.5",
+    "rxjs": "^6.5.3",
+    "rxjs-compat": "^6.5.3",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
   }
 }

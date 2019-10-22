@@ -9,9 +9,14 @@ export class HttpService {
   constructor(private _http: HttpClient) {
     console.log("hi");
   }
-  getChannelByID(){
-    return this._http.get('/channels/5dac73fa3d126bef3275b8a8');
+  getChannelByID(id) {
+    return this._http.get('/channels/' + id);
 
   }
-
+  AllgetChannel() {
+    return this._http.get('/channels');
+  }
+  createChannel(newChannel) {
+    return this._http.post('/channels', newChannel);
+  }
 }

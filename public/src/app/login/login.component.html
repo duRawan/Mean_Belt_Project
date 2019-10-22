@@ -1,0 +1,25 @@
+<div class="container-fluid col-xs-6 col-xs-offset-3">
+
+
+        <h2 class="text-center page-header">Welcome to our Chat</h2>
+      
+        <div class="form-group">
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input id="inputEmail" [(ngModel)]="email" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+        </div>
+      
+        <div class="form-group">
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input id="inputPassword" [(ngModel)]="password" class="form-control" placeholder="Password" required="" type="password">
+        </div>
+      
+        <div class="form-group">
+          <button class="btn btn-lg btn-primary btn-block" (click)="login()" type="submit">Sign in</button>
+        </div>
+      
+        <div class="text-right">
+          <a href="/register">Register now</a>
+        </div>
+      
+      </div>
+      

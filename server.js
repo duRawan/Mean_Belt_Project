@@ -13,7 +13,7 @@ require('./server/config/mongoose.js')
 require('./server/models/channel.js');
 require('./server/models/user.js');
 require('./server/config/routes.js')(app)
-const channels = require('/Users/rawan/Desktop/Mean-Belt-project/Mean_Belt_Project/server/controllers/channels.js');
+const channels = require('./server/controllers/channels.js');
 
 
 //socket
@@ -23,7 +23,7 @@ io.on('connection', function (socket) {
     socket.on('channelID', function (data) {
     console.log("---------chanel----------",data);
     // channel=channels.GetChannelById(data._id);
-    console.log("mmmmmm",data['data']['messages']);
+    console.log("mmmmmm",data[0]['messages']);
 
     io.emit('getAllMessages', { messages: data.messages })
 })
@@ -38,7 +38,23 @@ io.on('connection', function (socket) {
 });
 
 
-
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+  });
+  
+  // error handler
+  app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development'
+    ? err
+    : {};
+  
+    res.status(err.status || 500);
+    res.json('error');
+  });
 
 // this route will be triggered if any of the routes above did not match
 app.all("*", (req,res,next) => {

@@ -49,58 +49,13 @@ module.exports = function (app) {
     app.delete('/users/:id/', (req, res) => {
         users.DeleteUser(req, res);
     });
-
-    // // sign Up
-    // app.post('/signup', (req, res) => {
-    //     console.log(req.body.email);
-    //     //check if user already existed
-    //     User.findOne({ 'email': req.body.email }).exec((err, data) => {
-    //         if (err)
-    //             return res.json(err)
-    //         if (data) {
-    //             return res.json({ message: "already a member" })
-    //         } else {
-    //             //create a new user
-    //             //hash the password
-    //             // bcrypt.hash(req.body.password, saltRounds).then((hash) => {
-    //             var user = new User()
-    //             user.userName = req.body.name;
-    //             user.email = req.body.email;
-    //             user.password = req.body.password;//hash;
-
-    //             user.save((err) => {
-    //                 if (err)
-    //                     res.json(err)
-    //                 // saved!
-    //                 res.json({ message: "signed up successfully", status: true })
-    //             })
-    //             //});
-
-    //         }
-    //     })
-
-    // })
-
     // signin
     app.post('/signin', (req, res) => {
-
-        User.findOne({ 'email': req.body.email }).exec((err, data) => {
-            if (data) {
-                // compare hash from your password DB.
-                //bcrypt.compare(req.body.password, data.password, (err, result) => {
-                if (req.body.password == data.password)
-                    // result == true
-                    //if (result == true)
-                    res.json({ message: "signed in successfully", id: data._id, name: data.userName, status: true })
-                else {
-                    res.json({ message: "can't sign in" })
-                }
-                //});
-            }
-            else res.json({ message: "can't sign in" })
-        })
+        users.login(req, res);
     })
-
+app.get('/channels/:ChannelID/:UserName/' , (req, res) => {
+    channels.LeaveChannelByUserName(req, res);
+})
 
 }
 

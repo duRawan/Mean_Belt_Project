@@ -35,4 +35,16 @@ module.exports = {
         .then(data =>{console.log(" all Channels for user",data),res.json(data)})
         .catch(err => res.json(err));
     },
+    LeaveChannelByUserName:function (req,res){//Find all channels for a user by UserName
+        console.log("User name -------",req.params.UserName)
+        console.log("User ChannelID -------",req.params.ChannelID)
+        Channel.findOne({_id:ChannelID})
+        .then(data =>{
+            data['members']= data['members'].pop(data['members'].indexOf(userName))
+            Channel.update({ _id: ChannelID }, { $set: { 'members': data['members'],'updatedAt': Date.now } })
+            .then(data => { console.log("Channel Updated succesfully"), res.json(data) })
+            .catch(err => res.json(err))
+            ,res.json(data)})
+        .catch(err => res.json(err));
+    },
 }

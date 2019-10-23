@@ -37,4 +37,21 @@ module.exports = {
             .then(console.log("User Deleted succesfully"))
             .catch(err => res.json(err));
     },
+    login: function(req,res){
+        User.findOne({ 'email': req.body.email }).exec((err, data) => {
+            if (data) {
+                // compare hash from your password DB.
+                //bcrypt.compare(req.body.password, data.password, (err, result) => {
+                if (req.body.password == data.password)
+                    // result == true
+                    //if (result == true)
+                    res.json({ message: "signed in successfully", id: data._id, name: data.userName, email: data.email, status: true })//should send user obj
+                else {
+                    res.json({ message: "can't sign in" })
+                }
+                //});
+            }
+            else res.json({ message: "can't sign in" })
+        })
+    }
 }

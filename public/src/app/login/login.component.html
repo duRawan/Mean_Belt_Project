@@ -24,14 +24,14 @@
       </div> -->
 
 <!DOCTYPE html>
-<div *ngIf="signin">
+<div >
 
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>login2</title>
-
+    <!-- <base href="/login" /> -->
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -89,9 +89,9 @@
                     </div>
 
                     <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-                      type="submit" (click)="login()">Sign in</button>
+                      type="submit" (click)="login()"  >Sign in</button>
                     <div class="text-center">
-                      <a class="small" href="#" (click)="setsignUp()">if you don't have account REGISTER HERE</a></div>
+                      <a class="small"  [routerLink]="['/register']" >if you don't have account REGISTER HERE</a></div>
                     <!-- Make it Button -->
                   </form>
                 </div>
@@ -104,5 +104,4 @@
   </body>
 
 </div>
-
-<app-register *ngIf="signUp"></app-register>
+  <!-- <app-dashboard *ngIf="selectedUser" [currentUser]="selectedUser"></app-dashboard> -->

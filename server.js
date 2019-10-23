@@ -3,10 +3,12 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var path = require("path");
+var cors =require("cors")
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public/dist/public"));
 app.use(bodyParser.json());
+app.use(cors());
 const server = app.listen(8000);
 
 require('./server/config/mongoose.js')
@@ -22,7 +24,7 @@ const io = require('socket.io')(server);
 io.on('connection', function (socket) {
     socket.on('channelID', function (data) {
     console.log("---------chanel----------",data);
-    // channel=channels.GetChannelById(data._id);
+    // channel=channels.GetCshannelById(data._id);
     console.log("mmmmmm",data[0]['messages']);
 
     io.emit('getAllMessages', { messages: data.messages })

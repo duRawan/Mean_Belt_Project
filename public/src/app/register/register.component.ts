@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       if (typeof(res.status)=="undefined") alert(res.message)
       else{
         console.log("===================",auth)
-        this.router.navigate(['/login'])
+        this.router.navigate(['/dashboard'])
       }
     })
   }

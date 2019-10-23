@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './http.service';
+import { HttpService } from '../http.service';
 import *  as io from "socket.io-client";
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent implements OnInit {
+export class HomeComponent implements OnInit {
   socket = io.connect();
   title = 'public';
   channel:any;
@@ -69,7 +69,6 @@ export class AppComponent implements OnInit {
     })
     
   }
-  
-
 
 }
+

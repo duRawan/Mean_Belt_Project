@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<div *ngIf="home" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+
+</head>
+
+<body>
+    <!-- navgation bar  -->
+    <nav class="navbar fixed-top navbar-expand-lg fixed-top" style="background-color: white;">
+        <div class="container">
+            <a class="navbar-brand text-primary" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">LogIn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- main header -->
+    <header>
+        
+        <img class="img-fluid rounded" src="img/img1.png" style="margin-top: 100px; width: 60%;">
+        <div style="float: right; width: 30%; margin-top: 200px; margin-left: 50px; margin-right: 30px;">
+            <h1>web Chating live </h1>
+            <h2>video live also !!</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque minus perspiciatis facere maiores accusamus. Illum, blanditiis ad consequuntur sed veritatis reprehenderit iste reiciendis nostrum ducimus</p>
+            <button type="button" class="btn btn-primary" style="width: 130px; margin-right: 10px;" [routerLink]="['/login']">Sign In</button>
+            <button type="button" class="btn btn-primary" style="width: 130px;" [routerLink]="['/register']">Sign Up</button>
+        </div>
+    </header>
+
+
+</body>
+
+</div>
+<!-- Toolbar -->
+<!-- 
+
+<div class="content" role="main"> -->
+
+  <!-- Highlight Card -->
+  <!-- <div class="card highlight-card card-small">
+
+    <svg id="rocket" alt="Rocket Ship" xmlns="http://www.w3.org/2000/svg" width="101.678" height="101.678"
+      viewBox="0 0 101.678 101.678">
+      <g id="Group_83" data-name="Group 83" transform="translate(-141 -696)">
+        <circle id="Ellipse_8" data-name="Ellipse 8" cx="50.839" cy="50.839" r="50.839" transform="translate(141 696)"
+          fill="#dd0031" />
+        <g id="Group_47" data-name="Group 47" transform="translate(165.185 720.185)">
+          <path id="Path_33" data-name="Path 33"
+            d="M3.4,42.615a3.084,3.084,0,0,0,3.553,3.553,21.419,21.419,0,0,0,12.215-6.107L9.511,30.4A21.419,21.419,0,0,0,3.4,42.615Z"
+            transform="translate(0.371 3.363)" fill="#fff" />
+          <path id="Path_34" data-name="Path 34"
+            d="M53.3,3.221A3.09,3.09,0,0,0,50.081,0,48.227,48.227,0,0,0,18.322,13.437c-6-1.666-14.991-1.221-18.322,7.218A33.892,33.892,0,0,1,9.439,25.1l-.333.666a3.013,3.013,0,0,0,.555,3.553L23.985,43.641a2.9,2.9,0,0,0,3.553.555l.666-.333A33.892,33.892,0,0,1,32.647,53.3c8.55-3.664,8.884-12.326,7.218-18.322A48.227,48.227,0,0,0,53.3,3.221ZM34.424,9.772a6.439,6.439,0,1,1,9.106,9.106,6.368,6.368,0,0,1-9.106,0A6.467,6.467,0,0,1,34.424,9.772Z"
+            transform="translate(0 0.005)" fill="#fff" />
+        </g>
+      </g>
+    </svg>
+
+    <span>{{ title }} app is running!</span>
+
+    <svg id="rocket-smoke" alt="Rocket Ship Smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632"
+      viewBox="0 0 516.119 1083.632">
+      <path id="Path_40" data-name="Path 40"
+        d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z"
+        transform="translate(-147.025 -140.939)" fill="#f5f5f5" />
+    </svg>
+
+  </div> -->
+
+  <!-- send the user id along with the get all channels so we retrieve all its channels! -->
+  <!-- <div *ngFor="let ch of channel">
+    <p>{{ ch.name }} app is running!</p>
+    <button (click)="getChannel(ch._id)"> click</button>
+  </div>
+  <div>
+
+-->
+
+<app-login *ngIf="login"></app-login>
+<app-register *ngIf="regst"></app-register>
+      <!-- name: {type: String},
+      owner: {type: String}, // the user who creates it 
+      messages:{type:[Object], default:{}}, //Object keys later {userName:"",message:"", time:""}// empty
+      sharedFiles:{type: [String],default:[]},//will be an object + buffer //GridFS//
+      members:{type:[String]} just emails -->
+
+    <!-- <button (click)="setFlag()" >Create A channel</button>
+    <form (submit)="onSubmit()" *ngIf="flag">
+      <p>Enter the room name: <input type="text" name="newChannel.name" [(ngModel)]="newChannel.name"></p>
+      <p>members <input type="text" name="newChannel.members" [(ngModel)]="newChannel.members"></p>
+      <br>
+      <input type="submit" value="Create">
+    </form>
+  </div> -->
+  <!-- <app-channel *ngIf="selectedChannel" [ChannelToShow]="selectedChannel"></app-channel> -->
+
+
+ 
+
+
+<!-- <app-login></app-login> 
+<app-register></app-register> -->

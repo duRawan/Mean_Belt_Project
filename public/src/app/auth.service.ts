@@ -8,19 +8,21 @@ export class AuthService {
   url: string = "http://localhost:8000";
   id: string = "";
   name: string = "";
+  email: string = "";
+  logged:boolean=false;
+  userInfo:any;
   constructor(public http: HttpClient) { }
 
   signUp(auth) {
   console.log(auth);
-
-    return this.http.post(this.url + "/users",auth)
-    
+  this.userInfo=this.http.post(this.url + "/users",auth)
+  return this.userInfo;
   }
 
 
   signIn(auth) {
-    return this.http.post(this.url + '/signin', auth)
-    
+    this.userInfo=this.http.post(this.url + '/signin', auth)   
+    return this.userInfo;
   }
 
 

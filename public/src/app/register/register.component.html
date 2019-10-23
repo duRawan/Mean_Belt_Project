@@ -1,7 +1,7 @@
   
 
   <!DOCTYPE html>
-  <div *ngIf="signup">
+  <div >
   
   <head>
     <meta charset="UTF-8">
@@ -36,7 +36,7 @@
               <a class="nav-link text-primary" href="#">Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-primary" href="#">LogIn</a>
+              <a class="nav-link text-primary" [routerLink]="['/login']">LogIn</a>
             </li>
           </ul>
         </div>
@@ -80,7 +80,7 @@
                     </div> MAKE CONFIRM PASSWORD
    -->
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="register()" type="submit">Register</button>
-                    <a class="d-block text-center mt-2 small" href="#" (click)="setlogin()">log In</a>   <!-- MAKE IT BUTTON -->
+                    <a class="d-block text-center mt-2 small"  [routerLink]="['/login']">log In</a>   <!-- MAKE IT BUTTON -->
                     <hr class="my-4">
                     </form>
                 </div>

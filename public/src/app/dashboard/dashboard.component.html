@@ -1,1 +1,11 @@
 <p>dashboard works!</p>
+
+<h1>hello {{currentUser.name}} </h1>
+<h1>My channels:</h1>
+<ul>
+    <li *ngFor="let c of UserChannels">
+       <a [routerLink]="['/channel',c._id]"> {{ c.name}} </a>
+        <button *ngIf="c['owner']==currentUser.name" (click)="deleteChannel(c._id)"> Delete</button>
+        <!-- <button *ngIf="!(c['owner']==currentUser.name)" (click)="leaveChannel(c._id)"> Leave</button> -->
+    </li>
+</ul>

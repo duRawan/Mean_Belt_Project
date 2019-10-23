@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 import *  as io from "socket.io-client";
-
+import {User} from "./_models";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +9,7 @@ import *  as io from "socket.io-client";
 
 })
 export class AppComponent implements OnInit {
-
+  currentUser:User;
   socket = io.connect();
   title = 'public';
   channel:any;

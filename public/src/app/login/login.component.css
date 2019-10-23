@@ -90,15 +90,15 @@ body {
   
   .form-label-group>input,
   .form-label-group>label {
-    padding: var(--input-padding-y) var(--input-padding-x);
+    padding:auto;
     height: auto;
     border-radius: 2rem;
   }
   
   .form-label-group>label {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 3px;
+    left: 13px;
     display: block;
     width: 100%;
     margin-bottom: 0;
@@ -112,7 +112,7 @@ body {
     transition: all .1s ease-in-out;
   }
   
-  .form-label-group input::-webkit-input-placeholder {
+  /* .form-label-group input::-webkit-input-placeholder {
     color: transparent;
   }
   
@@ -130,12 +130,12 @@ body {
   
   .form-label-group input::placeholder {
     color: transparent;
-  }
+  } */
   
-  .form-label-group input:not(:placeholder-shown) {
+  /* .form-label-group input:not(:placeholder-shown) {
     padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
     padding-bottom: calc(var(--input-padding-y) / 3);
-  }
+  } */
   
   .form-label-group input:not(:placeholder-shown)~label {
     padding-top: calc(var(--input-padding-y) / 3);

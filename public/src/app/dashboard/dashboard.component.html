@@ -1,11 +1,140 @@
-<p>dashboard works!</p>
+<!-- <p>dashboard works!</p>
 
 <h1>hello {{currentUser.name}} </h1>
 <h1>My channels:</h1>
 <ul>
     <li *ngFor="let c of UserChannels">
        <a [routerLink]="['/channel',c._id]"> {{ c.name}} </a>
-        <button *ngIf="c['owner']==currentUser.name" (click)="deleteChannel(c._id)"> Delete</button>
+        <button *ngIf="c['owner']==currentUser.name" (click)="deleteChannel(c._id)"> Delete</button> -->
         <!-- <button *ngIf="!(c['owner']==currentUser.name)" (click)="leaveChannel(c._id)"> Leave</button> -->
-    </li>
-</ul>
+    <!-- </li>
+</ul> -->
+
+<!DOCTYPE html>
+<html lang="en">
+​
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profile</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+​
+</head>
+​
+<body>
+  <!-- ---------------navgation ------------------- -->
+  <nav class="navbar fixed-top navbar-expand-lg fixed-top" style="background-color: white;">
+    <div class="container">
+      <a class="navbar-brand text-primary" href="index.html">Start Bootstrap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="#">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="#">LogIn</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+​
+  <!-- ------------------ main ------------------- -->
+  <div class="align-self-center" style=" padding: 20px;">
+    <img class="img-fluid rounded" src="assets/img/user.png" style="width: 30%; ">
+    <div style="float: right; width: 50%; margin-left: 50px; margin-top: 100px;">
+      <h1 style="padding: 20px; color: #5f6b75; font-family: 'Montserrat', sans-serif;">WELLCOME {{currentUser.name}}</h1>
+      <button type="button" class="btn btn-primary" style="margin-left: 20%;"> Add New Channel</button>
+    </div>
+​
+  </div>
+​
+​
+​
+<!-- ------------------------- Add channel form ------------------------ -->
+  <div style="background-color: #F0F2F2; font-family: 'Montserrat', sans-serif; padding: 30px;" align="center">
+    <h2> Add New Channel</h2>
+    <form style="width: 40%">
+      <div >
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Channel Name:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="colFormLabel" placeholder="Channel Name"
+              style="margin-top: 10px;">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Add Member:</label>
+          <div class="col-sm-10 ">
+            <input type="text" class="form-control" id="colFormLabel" placeholder="Member User"
+              style="margin-top: 10px;">
+            <button type="button" class="btn btn-warning" style="float: right;">Add Member</button>
+          </div>
+        </div>
+      </div>
+      <div style="width:100%; float: left; ">
+        <h4 style="padding: 10px;">List of members:</h4>
+        <p>@sara - @deema - @Du_rawan - @h_rawan @maha</p>
+      </div>
+      <div>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+      </div>
+    </form>
+  </div>
+​
+​
+​
+​
+
+<!-- ------------------------------channel table---------------------- -->
+  <div style="margin: 50px;">
+    <h2 style="color: #5f6b75; font-family: 'Montserrat', sans-serif;" align="center">My channels</h2>
+    <div>
+      <table class="table" style="width: 80%" align="center">
+        <br>
+        <thead>
+          <tr>
+            <th scope="col">Channel name </th>
+            <th scope="col">Action</th>
+​
+          </tr>
+        </thead>
+​
+        <tbody>
+          <div class="wrapper ">
+              <div *ngFor="let c of UserChannels">
+                <tr>
+​
+              <td><a [routerLink]="['/channel',c._id]"> {{ c.name}} </a></td>
+              <td><button *ngIf="c['owner']==currentUser.name" class="btn btn-warning" (click)="deleteChannel(c._id)"> Delete</button>
+                    <!-- <button *ngIf="!(c['owner']==currentUser.name)" class="btn btn-danger" (click)="leaveChannel(c._id)"> Leave</button> -->
+                </td>
+​
+                </tr>
+              </div>
+            
+​
+             
+          </div>
+        </tbody>
+​
+      </table>
+    </div>
+  </div>
+​
+
+</body>
+​
+</html>

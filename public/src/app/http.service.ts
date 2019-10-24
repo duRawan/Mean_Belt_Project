@@ -19,6 +19,9 @@ export class HttpService {
   createChannel(newChannel:any) {
     return this._http.post(this.url+'/channels', newChannel);
   }
+  editChannel(editedChannel:any) {
+    return this._http.put(this.url+'/channels/'+editedChannel._id, editedChannel);
+  }
   getChannelsByUSerName(UserName){
     return this._http.get(this.url+`/channels/username/${UserName}`);
   }
@@ -26,6 +29,6 @@ export class HttpService {
     return this._http.delete(this.url+`/channels/${channelID}`);
   }
   leaveChannelByID(channelID,userName){
-        return this._http.get(this.url+`/channels/${channelID}/${userName}`); 
+        return this._http.get(this.url+`/leave/${channelID}/${userName}`); 
   }
 }

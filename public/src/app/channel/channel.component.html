@@ -1,3 +1,25 @@
 <p>channel works!</p>
-<h6> msg {{ChannelToShow[0].messages}}</h6>
-<p>name {{ChannelToShow[0].name}}</p>
+<h1>Channel Name: {{ChannelInfo.name}}</h1>
+<!-- <h6 >messages {{ChannelInfo.messages}}</h6> -->
+<h1>owner: {{ChannelInfo.owner}}</h1>
+<h1>Members:</h1>
+<div *ngFor="let member of ChannelInfo.members">
+<h3>{{member}}</h3>
+</div>
+<h1>Messages:</h1>
+<div *ngFor="let message of ChannelInfo.messages">
+    <p>{{message.userName}}: {{message.message}}  at {{message.time}}</p>
+  </div>
+  <form>
+    <input type="text" name="message" [(ngModel)]="message" >
+    <button (click)="SendMessage()">Send</button>
+  </form>
+
+  <button *ngIf="owner" (click)="NewUserButton()"> Add Member</button>
+  <div *ngIf="NewUserForm">
+      <form>
+          <input type="text" name="Nmember" [(ngModel)]="Nmember" >
+          <button (click)="NewMember(Nmember)">Add</button>
+      </form>
+
+  </div>

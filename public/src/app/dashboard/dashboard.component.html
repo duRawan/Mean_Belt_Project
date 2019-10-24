@@ -44,7 +44,6 @@
     <img class="img-fluid rounded" src="assets/img/user.png" style="width: 30%; ">
     <div style="float: right; width: 50%; margin-left: 50px; margin-top: 100px;">
       <h1 style="padding: 20px; color: #5f6b75; font-family: 'Montserrat', sans-serif;">WELLCOME {{currentUser.name}}</h1>
-      <button type="button" class="btn btn-primary" style="margin-left: 20%;"> Add New Channel</button>
     </div>
 ​
   </div>
@@ -52,33 +51,38 @@
 ​
 ​
 <!-- ------------------------- Add channel form ------------------------ -->
-  <div style="background-color: #F0F2F2; font-family: 'Montserrat', sans-serif; padding: 30px;" align="center">
+  <div  *ngIf="formFlag" style="background-color: #F0F2F2; font-family: 'Montserrat', sans-serif; padding: 30px;" align="center">
     <h2> Add New Channel</h2>
     <form style="width: 40%">
       <div >
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Channel Name:</label>
+          <!-- <label class="col-sm-2 col-form-label">Channel Name:</label> -->
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="colFormLabel" placeholder="Channel Name"
+            <input type="text" class="form-control" id="colFormLabel" name="newChannelName" [(ngModel)]="newChannelName" placeholder="Channel Name"
               style="margin-top: 10px;">
           </div>
         </div>
-
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Add Member:</label>
-          <div class="col-sm-10 ">
-            <input type="text" class="form-control" id="colFormLabel" placeholder="Member User"
-              style="margin-top: 10px;">
-            <button type="button" class="btn btn-warning" style="float: right;">Add Member</button>
+          <!-- <label class="col-sm-2 col-form-label">Add Member:</label> -->
+          <div class="col-sm-10 form-inline ">
+            <input type="text" class="form-control" id="colFormLabel" placeholder="Member UserName" name="Nmember" [(ngModel)]="Nmember"
+              style="margin-top: 10px; padding-right: 118px;">
+              <button type="button" class="btn btn-warning" style="margin-top: 10px; " (click)="NewMemeber(Nmember)">Add Member</button>
+
           </div>
+
         </div>
       </div>
+      <hr>
       <div style="width:100%; float: left; ">
         <h4 style="padding: 10px;">List of members:</h4>
-        <p>@sara - @deema - @Du_rawan - @h_rawan @maha</p>
+       <div *ngFor="let m of newChannelMembers">
+         <p><button (click)="DeleteMember(m)" class="btn btn-gray btn-sm" > {{m}} <span style="color: red;">&#10006; </span></button></p>
+       
+        </div>
       </div>
       <div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit" (click)="newChannel()">Create</button>
       </div>
     </form>
   </div>
@@ -89,7 +93,8 @@
 
 <!-- ------------------------------channel table---------------------- -->
   <div style="margin: 50px;">
-    <h2 style="color: #5f6b75; font-family: 'Montserrat', sans-serif;" align="center">My channels</h2>
+    <h2 style="color: #5f6b75; font-family: 'Montserrat', sans-serif;" align="center">My channels     <button *ngIf="buttonFlag" type="button" class="btn btn-primary" style="margin-left: 50%;" (click)="ShowAddForm()"> Add New Channel</button>
+    </h2> 
     <div>
       <table class="table" style="width: 80%" align="center">
         <br>
@@ -97,26 +102,16 @@
           <tr>
             <th scope="col">Channel name </th>
             <th scope="col">Action</th>
-​
           </tr>
         </thead>
 ​
-        <tbody>
-          <div class="wrapper ">
-              <div *ngFor="let c of UserChannels">
+        <tbody *ngFor="let c of UserChannels">
                 <tr>
-​
               <td><a [routerLink]="['/channel',c._id]"> {{ c.name}} </a></td>
               <td><button *ngIf="c['owner']==currentUser.name" class="btn btn-warning" (click)="deleteChannel(c._id)"> Delete</button>
-                    <!-- <button *ngIf="!(c['owner']==currentUser.name)" class="btn btn-danger" (click)="leaveChannel(c._id)"> Leave</button> -->
+                    <button *ngIf="!(c['owner']==currentUser.name)" class="btn btn-danger" (click)="leaveChannel(c._id)"> Leave</button>
                 </td>
-​
-                </tr>
-              </div>
-            
-​
-             
-          </div>
+                </tr>    
         </tbody>
 ​
       </table>

@@ -22,12 +22,9 @@ const channels = require('./server/controllers/channels.js');
 const io = require('socket.io')(server);
 // var messages = []
 io.on('connection', function (socket) {
-    socket.on('channelID', function (data) {
-    console.log("---------chanel----------",data);
-    // channel=channels.GetCshannelById(data._id);
-    console.log("mmmmmm",data[0]['messages']);
-
-    io.emit('getAllMessages', { messages: data.messages })
+    socket.on('ChannelUpdated', function (data) {
+    console.log("---------chanel----------",data.channel);
+    io.emit('GotNewChange', { channel: data.channel })
 })
 
     // socket.on('newMessage', function (data) {

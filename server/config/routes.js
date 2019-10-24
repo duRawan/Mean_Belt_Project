@@ -28,6 +28,9 @@ module.exports = function (app) {
     app.delete('/channels/:id/', (req, res) => {
         channels.DeleteChannel(req, res);
     });
+    app.get('/leave/:ChannelID/:UserName/' , (req, res) => {
+        channels.LeaveChannelByUserName(req, res);
+    })
     ///////////users////////////
     //Retrieve all users
     app.get('/users', (req, res) => {
@@ -53,9 +56,6 @@ module.exports = function (app) {
     app.post('/signin', (req, res) => {
         users.login(req, res);
     })
-app.get('/channels/:ChannelID/:UserName/' , (req, res) => {
-    channels.LeaveChannelByUserName(req, res);
-})
 
 }
 

@@ -23,7 +23,7 @@ export class ChannelComponent {
    }
 
   ngOnInit() {
-    this.userName= "Rawan"; //<<from sesstion
+    this.userName= localStorage.getItem('name'); 
     this.NewUserForm=false;
     this.route.params.subscribe(params => {
       this.ChannelID = params['ChannelID'];

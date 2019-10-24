@@ -12,20 +12,21 @@ module.exports = {
             .then(data => res.json(data))
             .catch(err => res.json(err));
     },
-    newUser: function (req, res) {//Create a User
-        User.findOne().or([{ email: req.body.email }, { userName: req.body.name }]).exec((err, data) => {
+    newUser: function (req, res) {//Create a User        
+        User.findOne({$or:[{ 'email': req.body.email },{ 'userName': req.body.userName }]}).exec((err, data) => {
             if (err) {
                 console.log(err);
                 return res.json(err)
             }
             if (data) {
-                return res.json({ message: "already a member" })
+                console.log("----------------y----------------",data);
+                return res.json({ message: "already a member", status: false })
             } else {
                 // User.create({ userName: req.body.name, email: req.body.email, password: req.body.password })
                 //     .then(res.json({ message: "signed up successfully", status: true }))
                 //     .catch(err => res.json(err));
-                let userData = req.body
-                let user = new User(userData)
+                // let userData = req.body
+                let user = new User(req.body)
                 user.save((err, registeredUser) => {
                     if (err) {
                         console.log(err)

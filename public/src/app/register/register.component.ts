@@ -8,29 +8,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerUserData = {}
-  signup: boolean;
-  login: boolean;
+  registerUserData :any={}
+  userName:string;
+  email :string;
+  password :string;
+  // signup: boolean;
+  // login: boolean;
   selectedUser:any;
+
 
   constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.selectedUser={id:"", name:"",email:"" }
-    this.login = false;
-    this.signup = true;
+    // this.login = false;
+    // this.signup = true;
   }
 
-  setlogin() {
-    this.signup = false;
-    this.login = true;
-  }
+  // setlogin() {
+  //   this.signup = false;
+  //   this.login = true;
+  // }
 
   register() {
-    this.authService.signIn(this.registerUserData)
+    this.registerUserData.email= this.registerUserData.email.toLowerCase(); 
+    this.authService.signUp(this.registerUserData)
       .subscribe(
-        res => {
-          if (typeof(res.status)=="undefined") alert("Invalid Information, please try again")
+        res => {          
+          // if (typeof(res.status)=="undefined") alert("please try again")
+          //else
+          if (res.status==false) alert(res.message)
           else{
           localStorage.setItem('token', res.token)
           localStorage.setItem('name', res.name)

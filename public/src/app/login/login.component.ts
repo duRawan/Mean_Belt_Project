@@ -8,7 +8,7 @@ import { Router, NavigationExtras }  from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginUserData = {}
+  loginUserData :any= {}
   email :string;
   password :string;
   selectedUser:any;
@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-   
+    this.loginUserData.email= this.loginUserData.email.toLowerCase(); 
+
     this.authService.signIn(this.loginUserData)
     .subscribe(
       res => {
@@ -38,21 +39,7 @@ export class LoginComponent implements OnInit {
       }},
       err => console.log(err)
     ) 
-    // this.authService.signIn(auth).subscribe((res:any)=>{
-    //   if (typeof(res.status)=="undefined") alert("Invalid Email or Password, please try again")
-    //   else{
-        
-    //     this.authService.id = res.id;
-    //     this.authService.name=res.name;
-    //     this.authService.email=res.email;
-    //     this.selectedUser.id=this.authService.id;
-    //     this.selectedUser.name=this.authService.name;
-    //     this.selectedUser.email=this.authService.email;
         console.log("---------selectedUser------",this.selectedUser);
-    //     console.log("-------authService--------",this.authService); 
-    //     this.router.navigate(['/dashboard'],{state:{data:this.selectedUser}})
-    //   }
-    // });
   }
 
 

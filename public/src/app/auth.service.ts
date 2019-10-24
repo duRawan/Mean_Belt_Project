@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators/map';
-
+import { Router } from '@angular/router'
 @Injectable()
 export class AuthService {
 
@@ -11,18 +10,28 @@ export class AuthService {
   email: string = "";
   logged:boolean=false;
   userInfo:any;
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public router: Router) { }
 
   signUp(auth) {
   console.log(auth);
-  this.userInfo=this.http.post(this.url + "/users",auth)
-  return this.userInfo;
+  return this.http.post<any>(this.url + "/users",auth)
   }
 
-
   signIn(auth) {
-    this.userInfo=this.http.post(this.url + '/signin', auth)   
-    return this.userInfo;
+    return this.http.post<any>(this.url + '/signin', auth)    
+  }
+
+  logoutUser() {//logout
+    localStorage.removeItem('token')
+    this.router.navigate(['/'])
+  }
+
+  getToken() {
+    return localStorage.getItem('token')
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token')    
   }
 
 

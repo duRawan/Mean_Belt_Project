@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../auth.service';
-import { Router }  from '@angular/router';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,38 +8,33 @@ import { Router }  from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  registerUserData = {}
+  signup: boolean;
+  login: boolean;
 
-  name :string;
-  email :string;
-  password :string;
-  signup : boolean;
-  login : boolean;
-
-  constructor(public authService:AuthService, private router: Router) {  }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.login = false;
     this.signup = true;
   }
 
-  setlogin(){
+  setlogin() {
     this.signup = false;
     this.login = true;
   }
 
-  register(){
-    let auth = {
-      name:this.name,
-      email:this.email,
-      password: this.password
-    }
-    this.authService.signUp(auth).subscribe((res:any)=>{
-      if (typeof(res.status)=="undefined") alert(res.message)
-      else{
-        console.log("===================",auth)
-        this.router.navigate(['/dashboard'])
-      }
-    })
+  register() {
+    this.authService.signIn(this.registerUserData)
+      .subscribe(
+        res => {
+          if (typeof(res.status)=="undefined") alert("Invalid Information, please try again")
+          else{
+          localStorage.setItem('token', res.token)
+          this.router.navigate(['/dashboard']);
+        }},
+        err => console.log(err)
+      )
   }
 
 }

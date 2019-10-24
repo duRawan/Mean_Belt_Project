@@ -2,6 +2,7 @@ const channels = require('../controllers/channels.js');
 const users = require('../controllers/users.js');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const jwt = require('jsonwebtoken');
 module.exports = function (app) {
     ///////////channels////////////
     //Retrieve all channels
@@ -13,7 +14,7 @@ module.exports = function (app) {
         channels.GetChannelById(req, res);
     });
     //Retrieve channels by UserName
-    app.get('/channels/username/:UserName/', (req, res) => {
+    app.get('/channels/username/:UserName/',(req, res) => {
         channels.GetAllChannelForUser(req, res);
     });
     //Create a channel
@@ -28,7 +29,7 @@ module.exports = function (app) {
     app.delete('/channels/:id/', (req, res) => {
         channels.DeleteChannel(req, res);
     });
-    app.get('/leave/:ChannelID/:UserName/' , (req, res) => {
+    app.get('/leave/:ChannelID/:UserName/', (req, res) => {
         channels.LeaveChannelByUserName(req, res);
     })
     ///////////users////////////
@@ -56,6 +57,20 @@ module.exports = function (app) {
     app.post('/signin', (req, res) => {
         users.login(req, res);
     })
-
+    // function verifyToken(req, res, next) {
+    //     if (!req.headers.authorization) {
+    //         return res.status(401).send('Unauthorized request')
+    //     }
+    //     let token = req.headers.authorization.split(' ')[1]
+    //     if (token === 'null') {
+    //         return res.status(401).send('Unauthorized request')
+    //     }
+    //     let payload = jwt.verify(token, 'secretKey')
+    //     if (!payload) {
+    //         return res.status(401).send('Unauthorized request')
+    //     }
+    //     req.userId = payload.subject
+    //     next()
+    // }
 }
 

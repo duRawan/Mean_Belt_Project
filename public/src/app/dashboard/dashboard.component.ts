@@ -16,12 +16,10 @@ export class DashboardComponent implements OnInit {
   Nmember:string;
   newChannelMembers:string[]=[];
   constructor(private _httpService: HttpService , public _auth:AuthService) { }
-  currentUser:any=history.state.data;
+  name=localStorage.getItem('name');
   ngOnInit() {
     console.log("------------Start Dashboard-------------");
-    console.log("---",this.currentUser);
-    console.log("Dashboard >> userName: ", this.currentUser['name']);
-    console.log("Dashboard >> email: ", this.currentUser['email']);
+    console.log("Dashboard >> userName: ", this.name);
     this.getUserChannels();
     this.formFlag=false;
     this.buttonFlag=true;
@@ -37,7 +35,7 @@ export class DashboardComponent implements OnInit {
 let channel={
   name:this.newChannelName,
   members:this.newChannelMembers,
-  owner:this.currentUser['name']//<<from session>>
+  owner:this.name//<<from session>>
 }
 let observable = this._httpService.createChannel(channel);
 observable.subscribe(data => {//when the data is ready run this
@@ -65,7 +63,7 @@ observable.subscribe(data => {//when the data is ready run this
   leaveChannel(ChannelID){
     var r = confirm("Are you sure to leave this channel!");
     if (r == true) {
-    let observable = this._httpService.leaveChannelByID(ChannelID,this.currentUser.name);
+    let observable = this._httpService.leaveChannelByID(ChannelID,this.name);
     observable.subscribe(data => {//when the data is ready run this
       console.log("Leave Channel:", data)
       this.getUserChannels();
@@ -73,7 +71,7 @@ observable.subscribe(data => {//when the data is ready run this
   }
   }
   getUserChannels() {
-    let observable = this._httpService.getChannelsByUSerName(this.currentUser.name);
+    let observable = this._httpService.getChannelsByUSerName(this.name);
     observable.subscribe(data => {//when the data is ready run this
       console.log("Dashboard >> User Channels:", data)
       this.UserChannels = data;

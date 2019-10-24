@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import *  as io from "socket.io-client";
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
   regst: boolean;
   login:boolean;
   dash:boolean;
-  constructor(private _httpService: HttpService) { }
+  constructor(private _httpService: HttpService, public _auth: AuthService) { }
   ngOnInit() {
     let observable = this._httpService.AllgetChannel();
     observable.subscribe(data => {

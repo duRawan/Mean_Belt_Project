@@ -8,7 +8,7 @@ import { Router, NavigationExtras }  from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
+  loginUserData = {}
   email :string;
   password :string;
   selectedUser:any;
@@ -22,25 +22,37 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    let auth = {
-      email:this.email,
-      password: this.password
-    }
-    this.authService.signIn(auth).subscribe((res:any)=>{
+   
+    this.authService.signIn(this.loginUserData)
+    .subscribe(
+      res => {
       if (typeof(res.status)=="undefined") alert("Invalid Email or Password, please try again")
       else{
+        localStorage.setItem('token', res.token)
+        localStorage.setItem('name', res.name)
+        localStorage.setItem('id', res.id)
         
-        this.authService.id = res.id;
-        this.authService.name=res.name;
-        this.authService.email=res.email;
-        this.selectedUser.id=this.authService.id;
-        this.selectedUser.name=this.authService.name;
-        this.selectedUser.email=this.authService.email;
+        this.selectedUser.name=localStorage.getItem('name');
+        this.selectedUser.id=localStorage.getItem('id');
+        this.router.navigate(['/dashboard']); 
+      }},
+      err => console.log(err)
+    ) 
+    // this.authService.signIn(auth).subscribe((res:any)=>{
+    //   if (typeof(res.status)=="undefined") alert("Invalid Email or Password, please try again")
+    //   else{
+        
+    //     this.authService.id = res.id;
+    //     this.authService.name=res.name;
+    //     this.authService.email=res.email;
+    //     this.selectedUser.id=this.authService.id;
+    //     this.selectedUser.name=this.authService.name;
+    //     this.selectedUser.email=this.authService.email;
         console.log("---------selectedUser------",this.selectedUser);
-        console.log("-------authService--------",this.authService); 
-        this.router.navigate(['/dashboard'],{state:{data:this.selectedUser}})
-      }
-    });
+    //     console.log("-------authService--------",this.authService); 
+    //     this.router.navigate(['/dashboard'],{state:{data:this.selectedUser}})
+    //   }
+    // });
   }
 
 

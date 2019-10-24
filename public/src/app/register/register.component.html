@@ -29,12 +29,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link text-primary" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-primary" href="#">Profile</a>
-            </li>
+          
             <li class="nav-item">
               <a class="nav-link text-primary" [routerLink]="['/login']">LogIn</a>
             </li>
@@ -56,12 +51,12 @@
                   <form class="form-signin">
                     <div class="form-label-group">
 
-                      <input type="text" name="name" [(ngModel)]="name" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
+                      <input type="text" name="name" [(ngModel)]="registerUserData.name" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
                      
                     </div>
   
                     <div class="form-label-group">
-                      <input type="email" id="inputEmail" name="email" [(ngModel)]="email" class="form-control" placeholder="Email address" required>
+                      <input type="email" id="inputEmail" name="email" [(ngModel)]="registerUserData.email" class="form-control" placeholder="Email address" required>
                       
                     </div>
   
@@ -69,7 +64,7 @@
   
                     <div class="form-label-group">
 
-                      <input type="password" id="inputPassword" class="form-control" name="password" [(ngModel)]="password" placeholder="Password" required>
+                      <input type="password" id="inputPassword" class="form-control" name="password" [(ngModel)]="registerUserData.password" placeholder="Password" required>
                      
                     </div>
   
@@ -80,7 +75,7 @@
                     </div> MAKE CONFIRM PASSWORD
    -->
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="register()" type="submit">Register</button>
-                    <a class="d-block text-center mt-2 small"  [routerLink]="['/login']">log In</a>   <!-- MAKE IT BUTTON -->
+                    <a class="d-block text-center mt-2 small"  [routerLink]="['/login']">already have account? LOGIN here</a>   <!-- MAKE IT BUTTON -->
                     <hr class="my-4">
                     </form>
                 </div>

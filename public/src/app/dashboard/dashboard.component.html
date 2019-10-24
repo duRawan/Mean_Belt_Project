@@ -26,14 +26,12 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link text-primary" href="#">Home</a>
+              <a class="nav-link text-primary"  *ngIf="_auth.loggedIn()" [routerLink]="['/dashboard']">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="#">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-primary" href="#">LogIn</a>
-          </li>
+            <a class="nav-link text-primary"  *ngIf="!_auth.loggedIn()" href="#">LogIn</a>
+            <a class="nav-link text-primary"  *ngIf="_auth.loggedIn()" (click)="_auth.logoutUser()" [routerLink]="['/']">Logout</a>       
+             </li>
         </ul>
       </div>
     </div>
@@ -43,7 +41,7 @@
   <div class="align-self-center" style=" padding: 20px;">
     <img class="img-fluid rounded" src="assets/img/user.png" style="width: 30%; ">
     <div style="float: right; width: 50%; margin-left: 50px; margin-top: 100px;">
-      <h1 style="padding: 20px; color: #5f6b75; font-family: 'Montserrat', sans-serif;">WELLCOME {{currentUser.name}}</h1>
+      <h1 style="padding: 20px; color: #5f6b75; font-family: 'Montserrat', sans-serif;">WELLCOME {{name}}</h1>
     </div>
 ​
   </div>
@@ -107,9 +105,9 @@
 ​
         <tbody *ngFor="let c of UserChannels">
                 <tr>
-              <td><a [routerLink]="['/channel',c._id]"> {{ c.name}} </a></td>
-              <td><button *ngIf="c['owner']==currentUser.name" class="btn btn-warning" (click)="deleteChannel(c._id)"> Delete</button>
-                    <button *ngIf="!(c['owner']==currentUser.name)" class="btn btn-danger" (click)="leaveChannel(c._id)"> Leave</button>
+              <td><a [routerLink]="['/channel',c._id]" > {{ c.name}} </a></td>
+              <td ><button *ngIf="c['owner']==name" class="btn btn-warning" (click)="deleteChannel(c._id)"> Delete</button>
+                    <button *ngIf="!(c['owner']==name)" class="btn btn-danger" (click)="leaveChannel(c._id)"> Leave</button>
                 </td>
                 </tr>    
         </tbody>

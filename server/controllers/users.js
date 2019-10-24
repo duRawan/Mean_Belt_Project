@@ -35,7 +35,7 @@ module.exports = {
                         let payload = { subject: registeredUser._id }
                         let token = jwt.sign(payload, 'secretKey')
                         console.log(token);
-                        res.status(200).send({ token, id, name,status: true  })
+                        res.status(200).send({ token, id, name, status: true  })
                     }
                 })
 
@@ -68,7 +68,7 @@ module.exports = {
                     console.log("Hiiiiiiiiiii------------______---------", id, "-------", name)
                     let payload = { subject: data._id }
                     let token = jwt.sign(payload, 'secretKey')
-                    res.status(200).send({ token, id, name, status: true  })
+                    res.status(200).send({ token, id, name, status: true ,message: "signed in successfully" })
                 }
                 else {
                     res.json({ message: "can't sign in" })

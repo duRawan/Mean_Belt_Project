@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
     this.newChannelMembers.splice(this.newChannelMembers.indexOf(m),1 )
   }////by name
   newChannel(){
+    this.newChannelMembers.push(this.name)
 let channel={
   name:this.newChannelName,
   members:this.newChannelMembers,

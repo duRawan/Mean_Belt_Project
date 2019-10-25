@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../http.service';
+import { AuthService } from '../auth.service';
+
 import { Observable } from 'rxjs/Observable';
 import *  as io from "socket.io-client";
 @Component({
@@ -17,17 +19,20 @@ export class ChannelComponent {
   userName: string;
   time: string;
   owner:boolean;
+  msgFrom:boolean;
   NewUserForm:boolean;
-  constructor(private _httpService: HttpService, private route: ActivatedRoute) {
+  constructor(private _httpService: HttpService, private route: ActivatedRoute, public _auth:AuthService) {
     this.socket = io('http://localhost:8000');
    }
 
   ngOnInit() {
     this.userName= localStorage.getItem('name'); 
     this.NewUserForm=false;
+    this.msgFrom = false;
     this.route.params.subscribe(params => {
       this.ChannelID = params['ChannelID'];
       console.log("Channel ID:", this.ChannelID)
+
     });
     this.getChannel();
 
@@ -42,6 +47,7 @@ export class ChannelComponent {
     observable.subscribe(data => {//when the data is ready run this
       console.log("-----our channel!", data[0])
       this.ChannelInfo = data[0];
+      // this.ChannelInfo.messages.shift()
       //Need to check after sesstion>>if username not in members array for this.ChannelInfo redirct to dashboard   << important
       if (this.userName==this.ChannelInfo.owner){
         this.owner=true;      
@@ -85,8 +91,36 @@ export class ChannelComponent {
       this.NewUserForm=false;
       this.owner=true;
     })
+  }
 
+  checkMsgFrom(uName){
+    console.log(uName)
+    if (uName == this.userName){
+    console.log("false usrname")
+    return false;}
 
+    else{
+      console.log("true usrname")
+    return true
+    }
+    
+  }
+  checkNoMsg(){
+    console.log("lennnngth",this.ChannelInfo.messages.length);
+    
+    if (this.ChannelInfo.messages.length > 1){
+    console.log("bigger the zero");
+    
+    return true}
+
+    else 
+    return false
+  }
+  checkUser(member){
+    if (this.userName == member)
+    return false
+    else
+    return true
   }
 
 }

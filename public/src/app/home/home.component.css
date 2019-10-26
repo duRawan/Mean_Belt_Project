@@ -1,5 +1,6 @@
 body {
-    padding-top: 56px;
+    padding-top: 90px;
+    font-family: 'Montserrat', sans-serif;
   }
   body,
   html {
@@ -15,3 +16,9 @@ body {
     -o-background-size: cover;
     background-size: cover;
   }
+  .logo{
+    display: inline-block;
+    width: 15%;
+  }
+
+  

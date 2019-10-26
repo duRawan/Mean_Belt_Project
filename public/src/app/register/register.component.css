@@ -2,7 +2,12 @@
   padding-top: 56px;
 } */
 body {
-  padding-top: 56px;
+  padding-top: 90px;
+  font-family: 'Montserrat', sans-serif;
+}
+.logo{
+  display: inline-block;
+  width: 15%;
 }
 body,
 html {

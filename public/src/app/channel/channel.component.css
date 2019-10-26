@@ -1,13 +1,21 @@
 body {
-    padding-top: 120px;
+    padding-top: 90px;
+    
+    font-family: 'Montserrat', sans-serif;
 }
+.logo{
+    display: inline-block;
+    width: 15%;
+  }
 
 body,
 html {
     width: 100%;
     height: 100%;
 }
-
+nav{
+    height:74px;
+}
 .carousel-item {
     height: 65vh;
     min-height: 300px;
@@ -18,17 +26,14 @@ html {
     background-size: cover;
 }
 
-.continer {
-    height: 100%;
-    border: 1px solid #bbb;
-}
+
 
 .scrol {
     overflow-y: scroll;
 }
 
 .detailBox {
-    width: 40%;
+    width: 30%;
     border-right: 1px solid #bbb;
     margin: 0 0 27px 10px;
     display: inline-block;
@@ -37,8 +42,8 @@ html {
 }
 
 .videoBox {
-    width: 40%;
-    height: 516px;
+    width: 50%;
+    height: 613px;
     border-right: 1px solid #bbb;
     margin: 0 0 27px 10px;
     display: inline-block;
@@ -95,7 +100,7 @@ html {
     padding: 0;
     list-style: none;
     max-height: px;
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 dl,
@@ -193,8 +198,9 @@ ul {
 }
 /* ---------------------- msg box --------------------------------- */
 .mesgs{
+    width: 100%;
 	float: left;
-	padding: 5px 15px 0 25px;
+	padding: 5px 10px 0 5px;
 
 }
 .time_date {
@@ -213,24 +219,35 @@ ul {
 	vertical-align: top;
 	width: 90%;
 }
+
 .received_withd_msg p {
 	background: #ebebeb none repeat scroll 0 0;
 	border-radius: 0 15px 15px 15px;
 	color: #646464;
 	font-size: 14px;
 	margin: 0;
-	padding: 5px 10px 5px 11px;
-	width: 100%;
+	padding: 5px 10px 5px 12px;
+    width: 100%;
+    
 }
-
+.input{
+    margin-bottom: 10px;
+    border:1px solid gray;
+    border-radius: 5px;
+}
 .outgoing_msg {
 	overflow: hidden;
-	margin: 1px 0 1px;
+	margin: 26px 0 26px;
+}
+
+.heading{
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 20px;
+    padding-left:15px ;
 }
 
 .sent_msg {
 	float: right;
-	
 }
 .sent_msg p{
     background: #0465ac none repeat scroll 0 0;
@@ -272,10 +289,7 @@ ul {
 	width: 100%;
 	outline:none;
 }
-.incoming_msg_img {
-	display: inline-block;
-	width: 6%;
-}
+
 .incoming_msg {
     margin: 0;
     color: #5679D4;

@@ -31,4 +31,12 @@ export class HttpService {
   leaveChannelByID(channelID,userName){
         return this._http.get(this.url+`/leave/${channelID}/${userName}`); 
   }
+  getEmail(members:string){
+    console.log("..........................",members)
+    return this._http.get(this.url+'/memEmail/'+members);
+  }
+  sendmail(email:string){
+    console.log("----------EMAIL---------",email)
+    return this._http.get(this.url+'/sendMail/'+email);
+  }
 }

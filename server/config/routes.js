@@ -56,7 +56,14 @@ module.exports = function (app) {
     // signin
     app.post('/signin', (req, res) => {
         users.login(req, res);
-    })
+    });
+    app.get('/memEmail/:UN/',(req, res)=>{
+        console.log(req.params.UN)
+        users.getemail(req,res);
+    });
+    app.get('/sendMail/:email/',(req, res)=>{
+        users.Semail(req,res);
+    });
     // function verifyToken(req, res, next) {
     //     if (!req.headers.authorization) {
     //         return res.status(401).send('Unauthorized request')

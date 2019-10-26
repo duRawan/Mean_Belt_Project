@@ -1,6 +1,17 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+nodemailer = require("nodemailer")
+const OTP_EMAIL_CONFIG= {
+    "host": 'smtp.gmail.com',
+    "port": 465,
+    "secure": true,
+    "auth": {
+        "user": 'durawan18@gmail.com',
+        "pass": '18rango.'
+    }
+  };
+  let mailModule = nodemailer.createTransport(OTP_EMAIL_CONFIG);
 module.exports = {
     GetAllUsers: function (req, res) {//Retrieve all Users
         User.find()
@@ -78,5 +89,27 @@ module.exports = {
             }
             else res.json({ message: "can't sign in" })
         })
+    },
+    getemail: function(req,res) {
+        console.log(req.params.UN)
+        User.findOne({userName:req.params.UN}).exec((err,data)=>{
+            if(data){
+                res.json({email:data.email})
+            }
+            else{
+                res.json("Cant Find !!")
+            }
+        })
+    },
+    Semail: function(req,res) {
+        console.log(req.params.email,'request');
+        var mailOptions = {
+            from: '"jsonworld " enter gmail account which you want to use for sending email',
+            to: req.params.email,
+            subject: "Co Base - Notification",
+            text: "Hello Our Dear Member,\nThis email is sent to you to inform you that you have been Added to a new Channel \nLog in to check it out.. \nThank You \n-Co Base Team"
+        }; 
+        mailModule.sendMail(mailOptions);
+        res.status(200).send({msg:'Mail sent successfully'});
     }
 }

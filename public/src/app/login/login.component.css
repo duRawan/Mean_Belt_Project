@@ -2,7 +2,8 @@
   padding-top: 56px;
 } */
 body {
-    padding-top: 56px;
+    padding-top: 90px;
+    font-family: 'Montserrat', sans-serif;
   }
   body,
   html {
@@ -155,4 +156,8 @@ body {
     .form-label-group input:-ms-input-placeholder {
       color: #777;
     }
+  }
+  .logo{
+    display: inline-block;
+    width: 15%;
   }

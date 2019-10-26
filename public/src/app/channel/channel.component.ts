@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../http.service';
 import { AuthService } from '../auth.service';
@@ -21,8 +21,10 @@ export class ChannelComponent {
   owner:boolean;
   msgFrom:boolean;
   NewUserForm:boolean;
-  constructor(private _httpService: HttpService, private route: ActivatedRoute, public _auth:AuthService) {
+  constructor(private _httpService: HttpService, private route: ActivatedRoute, public _auth:AuthService,    public el: ElementRef
+    ) {
     this.socket = io('http://localhost:8000');
+    
    }
 
   ngOnInit() {
@@ -35,11 +37,13 @@ export class ChannelComponent {
 
     });
     this.getChannel();
+    this.scrollToBottom()
 
 
 
       this.socket.on('GotNewChange', (msg: any) => {
         this.getChannel() 
+        
     });
   }
   getChannel() {
@@ -52,6 +56,7 @@ export class ChannelComponent {
       if (this.userName==this.ChannelInfo.owner){
         this.owner=true;      
       }
+      
     });
     //add messages to socket <<here>>
   }
@@ -74,6 +79,7 @@ export class ChannelComponent {
       //socket bodcast to everyone
       // this.getChannel();
       this.socket.emit('ChannelUpdated', {channel:this.ChannelInfo})
+      this.scrollToBottom();
     })
   }
   NewUserButton(){
@@ -123,4 +129,12 @@ export class ChannelComponent {
     return true
   }
 
+  scrollToBottom(): void {
+    let element: any = this.el.nativeElement.querySelector('.scrol');
+    setTimeout(() => {
+      element.scrollTop = element.scrollHeight;
+    }, 100);
+  }
+
 }
+

@@ -43,6 +43,7 @@ export class ChannelComponent {
 
       this.socket.on('GotNewChange', (msg: any) => {
         this.getChannel() 
+        this.scrollToBottom();
         
     });
   }

@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit {
       console.log("--------------End Dashboard--------------");
     })
   }
-  send(email){
+  sendMail(email){
     let observable = this._httpService.sendmail(email);
     observable.subscribe(data => {//when the data is ready run this
       console.log("Dashboard >> User Channels:", data)

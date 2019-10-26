@@ -101,7 +101,7 @@ module.exports = {
             }
         })
     },
-    Semail: function(req,res) {
+    Sendemail: function(req,res) {
         console.log(req.params.email,'request');
         var mailOptions = {
             from: '"jsonworld " enter gmail account which you want to use for sending email',

@@ -1,8 +1,6 @@
 const channels = require('../controllers/channels.js');
 const users = require('../controllers/users.js');
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
-const jwt = require('jsonwebtoken');
+
 module.exports = function (app) {
     ///////////channels////////////
     //Retrieve all channels
@@ -62,7 +60,7 @@ module.exports = function (app) {
         users.getemail(req,res);
     });
     app.get('/sendMail/:email/',(req, res)=>{
-        users.Semail(req,res);
+        users.Sendemail(req,res);
     });
     // function verifyToken(req, res, next) {
     //     if (!req.headers.authorization) {

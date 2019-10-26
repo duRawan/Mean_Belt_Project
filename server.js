@@ -10,7 +10,6 @@ app.use(express.static(__dirname + "/public/dist/public"));
 app.use(bodyParser.json());
 app.use(cors());
 const server = app.listen(8000);
-nodemailer = require("nodemailer")
 require('./server/config/mongoose.js')
 require('./server/models/channel.js');
 require('./server/models/user.js');
@@ -36,17 +35,6 @@ io.on('connection', function (socket) {
 
 });
 
-// const OTP_EMAIL_CONFIG= {
-//   "host": 'smtp.gmail.com',
-//   "port": 465,
-//   "secure": true,
-//   "auth": {
-//       "user": 'durawan18@gmail.com',
-//       "pass": '18rango.'
-//   }
-// };
-// let mailModule = nodemailer.createTransport(OTP_EMAIL_CONFIG);
-
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
@@ -64,18 +52,6 @@ app.use(function(req, res, next) {
     res.status(err.status || 500);
     res.json('error');
   });
-
-  // app.post('/sendemail',function(req,res){
-  //       console.log(req.body,'request');
-  //       var mailOptions = {
-  //           from: '"jsonworld " enter gmail account which you want to use for sending email',
-  //           to: req.body.to,
-  //           subject: "mail sending with angularjs and nodejs",
-  //           text: req.body.text
-  //       }; 
-  //       mailModule.sendMail(mailOptions);
-  //       res.status(200).send('Mail sent successfully');
-  //   })
 
 // this route will be triggered if any of the routes above did not match
 app.all("*", (req,res,next) => {

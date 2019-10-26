@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Channel = mongoose.model('Channel');
-const User = mongoose.model('User');
 module.exports = {
     GetAllChannels: function (req, res) {//Retrieve all Channels
         Channel.find()

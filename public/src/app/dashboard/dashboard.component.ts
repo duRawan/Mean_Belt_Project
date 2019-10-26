@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   newChannelName: string;
   Nmember: string;
   newChannelMembers: string[] = [];
+  membersEmails: any[] = [];
   membersEmail:any;
   constructor(private _httpService: HttpService, public _auth: AuthService) { }
   name = localStorage.getItem('name');
@@ -32,7 +33,10 @@ export class DashboardComponent implements OnInit {
     ob.subscribe(data=>{
       console.log("Here",data)
       this.membersEmail=data;
+      if(m != this.name)
+      this.membersEmails.push(data['email'])
     })
+    this.Nmember = ""
 
   }
   DeleteMember(m) {
@@ -51,6 +55,9 @@ export class DashboardComponent implements OnInit {
       this.getUserChannels()
       this.formFlag = false;
       this.buttonFlag = true;
+      for(var email of this.membersEmails){
+        this.sendMail(email)
+      }
     })
   }
   ShowAddForm() {

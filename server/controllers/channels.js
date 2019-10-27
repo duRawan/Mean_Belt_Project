@@ -19,7 +19,7 @@ module.exports = {
     },
     EditChannel: function (req, res) {//Update a Channel by ID
         //channel.messages >>push >>send
-        Channel.update({ _id: req.params.id }, { $set: { 'name': req.body.name, 'messages': req.body.messages, 'sharedFiles': req.body.sharedFiles, 'members':req.body.members, 'updatedAt': Date.now } })
+        Channel.update({ _id: req.params.id }, { $set: { 'name': req.body.name, 'messages': req.body.messages, 'sharedFiles': req.body.sharedFiles, 'members':req.body.members, 'link':req.body.link, 'updatedAt': Date.now } })
             .then(data => { console.log("Channel Updated succesfully"), res.json(data) })
             .catch(err => res.json(err));
 

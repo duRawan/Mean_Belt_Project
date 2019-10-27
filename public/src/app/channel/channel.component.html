@@ -117,7 +117,7 @@
             <div class="input_msg_write">
               <form>
               <input type="text" class="write_msg" placeholder="Type a message" name="message" [(ngModel)]="message" />
-              <button class="msg_send_btn" type="submit" (click)="SendMessage()"><i class="fa fa-paper-plane"
+              <button class="msg_send_btn" type="submit" (click)="SendMessage()" ><i class="fa fa-paper-plane"
                   aria-hidden="true"></i></button>
                   </form>
             </div>
@@ -130,12 +130,29 @@
     <div class="videoBox">
       <div class="titleBox" style="margin-left:10px">
         <label>Video </label>
+        <div class="hide-after-join">
+            <input type="hidden" id="user-name" value="r4nd0m">
+            <button type="button" id="share-screen" onclick="shareScreen()" class="btn btn-primary" *ngIf="owner" style="width: 130px; margin:0 0 10px 500px;"
+            >Share Screen</button>
+          </div>
 
       </div>
 
       <div class="actionBox">
+          
+            <!-- local/remote videos container -->
+              <div id="videos-container"></div>
+
+
         <!-- video -->
-        <p>hi</p>
+        <!-- {{ChannelInfo.link}} -->
+        <!-- <div class="Uname">
+          <button class="join">View</button>
+        </div>
+                <div style="width: 50px; height: 50px;" id="videos-container">
+        
+       
+        </div> -->
       </div>
     </div>
 

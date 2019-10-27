@@ -1,0 +1,201 @@
+<!-- <p>channel works!</p>
+<h1>Channel Name: {{ChannelInfo.name}}</h1>
+<h6 >messages {{ChannelInfo.messages}}</h6>
+<h1>owner: {{ChannelInfo.owner}}</h1>
+<h1>Members:</h1>
+<div *ngFor="let member of ChannelInfo.members">
+  <h3>{{member}}</h3>
+</div>
+<h1>Messages:</h1>
+<div *ngFor="let message of ChannelInfo.messages">
+  <p>{{message.userName}}: {{message.message}} at {{message.time}}</p>
+</div>
+<form>
+  <input type="text" name="message" [(ngModel)]="message">
+  <button (click)="SendMessage()">Send</button>
+</form>
+
+<button *ngIf="owner" (click)="NewUserButton()"> Add Member</button>
+<div *ngIf="NewUserForm">
+  <form>
+    <input type="text" name="Nmember" [(ngModel)]="Nmember">
+    <button (click)="NewMember(Nmember)">Add</button>
+  </form>
+
+</div> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ---------------navgation ------------------- -->
+  <nav class="navbar fixed-top navbar-expand-lg fixed-top" style="background-color: white; border-bottom: solid 1px #ececec;">
+      <div class="container">
+          <a [routerLink]="['/']">
+            <img src="assets/img/logo.png" class="logo"></a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto" >
+                  <li class="nav-item">
+                      <a class="nav-link text-primary" style="margin-top:60px;" *ngIf="_auth.loggedIn()" [routerLink]="['/dashboard']">Dashboard</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link text-primary" style="margin-top:60px;" *ngIf="_auth.loggedIn()" (click)="_auth.logoutUser()" [routerLink]="['/']">Logout</a>       
+                       </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+
+  <div>
+    <h2 class="heading">{{ChannelInfo.name}} Channel</h2>
+    <div class="detailBox">
+      <div class="titleBox">
+        <label> Chating </label>
+      </div>
+      <div class="actionBox">
+        <div class="mesgs">
+          <!-- <div *ngIf = "checkNoMsg()"> -->
+          <div *ngIf="checkNoMsg()" class="msg_history scrol">
+            <div *ngFor="let message of ChannelInfo.messages">
+              <!-- --------------------------------recive and going msg ----------------------------------------- -->
+              <!-- ---------------------------------------------------------------------------------------------- -->
+
+              <!-- <div *ngFor="let message of ChannelInfo.messages">
+              <p>{{message.userName}}: {{message.message}} at {{message.time}}</p>
+             </div> -->
+
+              <!-- <div *ngIf="checkMsgFrom(message.userName)"> -->
+              <div *ngIf="message.message">
+                <div *ngIf="checkMsgFrom(message.userName)">
+                  <!-- this div for reciving msg -->
+                  <p class="incoming_msg">{{message.userName}}:</p>
+                  <div class="received_msg">
+                    <div class="received_withd_msg">
+                      <p>{{message.message}}</p>
+                      <span class="time_date"> {{message.time}}</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- </div> -->
+
+                <div class="outgoing_msg" *ngIf="!checkMsgFrom(message.userName)">
+                  <!-- this div for send  msg -->
+                  <div class="sent_msg">
+                    <p>{{message.message}}</p>
+                    <span class="time_date"> {{message.time}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!checkNoMsg()" class="msg_history scrol">
+            <p>Send your thoughts</p>
+
+          </div>
+          <!-- </div> -->
+
+
+          <div class="type_msg">
+            <div class="input_msg_write">
+              <form>
+              <input type="text" class="write_msg" placeholder="Type a message" name="message" [(ngModel)]="message" />
+              <button class="msg_send_btn" type="submit" id="add" ><i class="fa fa-paper-plane"
+                  aria-hidden="true"></i></button>
+                  </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+    <div class="videoBox">
+      <div class="titleBox" style="margin-left:10px">
+        <label>Video </label>
+        <!-- <button type="button" id="share-screen" onclick="shareScreen()" class="btn btn-primary" *ngIf="owner" style="width: 130px; margin:0 0 10px 500px;"
+        >Share Screen</button> -->
+
+      </div>
+
+      <div class="actionBox">
+          <section class="experiment">
+              <section class="hide-after-join">
+                  <span>
+                      Private ?? <a href="/screen-sharing/" target="_blank" title="Open this link for private screen sharing!"><code><strong id="unique-token">#123456789</strong></code></a>
+                  </span>
+                  <input type="text" id="user-name" placeholder="Your Name">
+                  <button id="share-screen" onclick="shareScreen()" class="setup">Share Your Screen</button>
+              </section>
+
+              <!-- list of all available broadcasting rooms -->
+              <table style="width: 100%;" id="rooms-list" class="hide-after-join"></table>
+
+              <!-- local/remote videos container -->
+              <div id="videos-container"></div>
+          </section>
+
+
+        <!-- video -->
+        <!-- {{ChannelInfo.link}} -->
+        <!-- <div class="Uname">
+          <button class="join">View</button>
+        </div>
+                <div style="width: 50px; height: 50px;" id="videos-container">
+        
+       
+        </div> -->
+      </div>
+    </div>
+
+    <!-- ------------------------------------------ -->
+    <div class="MembersBox">
+      <div class="titleBox" style="margin-left:10px">
+        <label>Members</label>
+
+      </div>
+
+      <div class="actionBox">
+
+
+        <div *ngFor="let member of ChannelInfo.members">
+          <p *ngIf="checkUser(member)">{{member}}</p>
+        </div>
+        <button class="btn btn-outline-success btn-sm" *ngIf="owner" (click)="NewUserButton()" type="button"><i
+            class="fa fa-user-plus" aria-hidden="true"></i>
+          Add user</button>
+        <div *ngIf="NewUserForm">
+          <form>
+            <input type="text" name="Nmember" [(ngModel)]="Nmember" class="input">
+            <button class="btn btn-outline-success btn-sm" (click)="NewMember(Nmember)">Add</button>
+          </form>
+
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  <!-- -------------------------------------------------------------------- -->
+
+</body>
+
+</html>

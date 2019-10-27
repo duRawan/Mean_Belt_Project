@@ -26,7 +26,17 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/adapter-latest.js",
+              "src/assets/js/BandwidthHandler.js",
+              "src/assets/js/CodecsHandler.js",
+              "src/assets/js/getScreenId.js",
+              "src/assets/js/IceServersHandler.js",
+              "src/assets/js/screen.js",
+              "src/assets/js/socket.io.js",
+              "src/assets/js/myScript.js"
+
+            ]
           },
           "configurations": {
             "production": {

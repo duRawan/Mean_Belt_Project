@@ -49,6 +49,8 @@ export class DashboardComponent implements OnInit {
       members: this.newChannelMembers,
       owner: this.name//<<from session>>
     }
+    this.newChannelName="";
+    this.newChannelMembers=[];
     let observable = this._httpService.createChannel(channel);
     observable.subscribe(data => {//when the data is ready run this
       console.log("Create Channel --------:", data)

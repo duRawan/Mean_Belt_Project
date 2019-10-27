@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ChatDB', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/ChannelDB', { useNewUrlParser: true });
 const fs = require("fs")
 const path = require("path")
 const models_path = path.join(__dirname, "./../models")

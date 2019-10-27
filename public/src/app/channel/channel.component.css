@@ -48,13 +48,13 @@ nav{
     /* margin: 0 0 27px 10px; */
     display: inline-block;
     vertical-align: top;
-    height: 400px;
+    height: 550px;
 
 }
 
 .videoBox {
     width: 50%;
-    height: 400px;
+    height: 550px;
     border-right: 1px solid #bbb;
     /* margin: 0 0 27px 10px; */
     display: inline-block;
@@ -64,7 +64,7 @@ nav{
 
 .MembersBox {
     width: 20%;
-    height: 400px;
+    height: 550px;
     /* margin: 0 0 27px 10px; */
     display: inline-block;
     vertical-align: top;

@@ -67,8 +67,8 @@
   <div>
     <h2 class="heading">{{ChannelInfo.name}} Channel</h2>
     <div class="detailBox">
-      <div class="titleBox">
-        <label> Chating </label>
+      <div class="titleBox" style="padding-left: 10px; padding-top: 5px;">
+        <label style="text-transform: uppercase; letter-spacing: 3px; text-shadow: 1px 2px #d8d8d8;"> Chating </label>
       </div>
       <div class="actionBox">
         <div class="mesgs">
@@ -128,18 +128,17 @@
     </div>
     <!-- ----------------------------------------------------------- -->
     <div class="videoBox">
-      <div class="titleBox" style="margin-left:10px">
-        <label>Video </label>
+      <div class="titleBox" style="padding-left:10px; padding-top:5px;">
+        <label style="text-transform: uppercase; letter-spacing: 3px; text-shadow: 1px 2px #d8d8d8;">Video </label>
+        <button type="button" id="share-screen" onclick="shareScreen()" class="btn btn-primary btn-sm" *ngIf="owner" style="width: 130px; float: right; margin-right: 20px;">
+          Share Screen</button>
         <div class="hide-after-join">
             <input type="hidden" id="user-name" value="r4nd0m">
-            <button type="button" id="share-screen" onclick="shareScreen()" class="btn btn-primary" *ngIf="owner" style="width: 130px; margin:0 0 10px 500px;"
-            >Share Screen</button>
           </div>
-
       </div>
-
+       
       <div class="actionBox">
-          
+           
             <!-- local/remote videos container -->
               <div id="videos-container"></div>
 
@@ -158,8 +157,8 @@
 
     <!-- ------------------------------------------ -->
     <div class="MembersBox">
-      <div class="titleBox" style="margin-left:10px">
-        <label>Members</label>
+      <div class="titleBox" style="padding-left:10px; padding-top:5px;">
+        <label style="text-transform: uppercase; letter-spacing: 3px; text-shadow: 1px 2px #d8d8d8;">Members</label>
 
       </div>
 

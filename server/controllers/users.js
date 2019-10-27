@@ -7,8 +7,8 @@ const OTP_EMAIL_CONFIG= {
     "port": 465,
     "secure": true,
     "auth": {
-        "user": 'vsecure4@gmail.com',
-        "pass": 'Rrdsm@123'
+        "user": 'Co.base2@gmail.com',
+        "pass": '1234567890C'
     }
   };
   let mailModule = nodemailer.createTransport(OTP_EMAIL_CONFIG);
